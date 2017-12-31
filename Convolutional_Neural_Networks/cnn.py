@@ -67,3 +67,12 @@ classifier.fit_generator(training_set,
                          nb_epoch = 25,
                          validation_data = test_set,
                          nb_val_samples = 2000)
+
+from keras.preprocessing import image as image_utils
+import numpy as np
+ 
+test_image = image_utils.load_img('dataset/new_images/new_picture.jpg', target_size=(64, 64))
+test_image = image_utils.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis=0)
+ 
+result = classifier.predict_on_batch(test_image)
